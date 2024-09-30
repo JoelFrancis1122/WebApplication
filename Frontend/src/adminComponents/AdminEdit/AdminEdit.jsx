@@ -63,55 +63,68 @@ const AdminEdit = () => {
     <div className="admin-edit">
       <h1 className="text-2xl font-bold mb-4">Edit User</h1>
       <form className="edit-form" onSubmit={handleSubmit}>
-        <div className="input-group">
-          <label htmlFor="name" className="input-label">Name:</label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            value={user.name}
-            onChange={handleChange}
-            required
-            className="input-field"
-          />
-        </div>
-        <div className="input-group">
-          <label htmlFor="email" className="input-label">Email:</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            value={user.email}
-            onChange={handleChange}
-            required
-            className="input-field"
-          />
-        </div>
-        <div className="input-group">
-          <label htmlFor="phone" className="input-label">Phone:</label>
-          <input
-            id="phone"
-            name="phone"
-            type="text"
-            value={user.phone}
-            maxLength="10"
-            onChange={handleChange}
-            className="input-field"
-          />
-        </div>
-        <div className="input-group">
-          <label htmlFor="password" className="input-label">Password:</label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            value={user.password}
-            onChange={handleChange}
-            className="input-field"
-          />
-        </div>
-        <button type="submit" className="submit-button">Save Changes</button>
-      </form>
+  <div className="input-group">
+    <label htmlFor="name" className="input-label">Name:</label>
+    <input
+      id="name"
+      name="name"
+      type="text"
+      value={user.name}
+      onChange={handleChange}
+      required
+      className="input-field"
+      onKeyDown={(e) => {
+        if (e.key === ' ') {
+          e.preventDefault();  // Prevent space from being added
+        }
+      }}
+      onPaste={(e) => {
+        e.preventDefault();  // Prevent pasting
+      }}
+    />
+  </div>
+  
+  <div className="input-group">
+    <label htmlFor="email" className="input-label">Email:</label>
+    <input
+      id="email"
+      name="email"
+      type="email"
+      value={user.email}
+      onChange={handleChange}
+      required
+      className="input-field"
+    />
+  </div>
+  
+  <div className="input-group">
+    <label htmlFor="phone" className="input-label">Phone:</label>
+    <input
+      id="phone"
+      name="phone"
+      type="text"
+      value={user.phone}
+      maxLength="10"  // Limit the input to 10 characters
+      onChange={handleChange}
+      className="input-field"
+    />
+  </div>
+  
+  <div className="input-group">
+    <label htmlFor="password" className="input-label">Password:</label>
+    <input
+      id="password"
+      name="password"
+      type="password"
+      value={user.password}
+      onChange={handleChange}
+      className="input-field"
+    />
+  </div>
+  
+  <button type="submit" className="submit-button">Save Changes</button>
+</form>
+
     </div>
   );
 };

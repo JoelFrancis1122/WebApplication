@@ -13,6 +13,7 @@ const Login = () => {
     const dispatch = useDispatch();
 
     const token = useSelector((state) => state.user.token);
+    const adminToken = useSelector((state) => state.admin.token);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -53,6 +54,9 @@ const Login = () => {
     useEffect(() => {
         if (token) {
             navigate('/home');
+        }
+       else if (adminToken) {
+            navigate('/admin');
         }
     }, [token, navigate]);
 

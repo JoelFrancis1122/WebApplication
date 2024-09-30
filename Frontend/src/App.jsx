@@ -28,7 +28,7 @@ function App() {
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<UserProtected><Home /></UserProtected>} />
-        <Route path="/profile" element={<UserProtected><Profile /></UserProtected>} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/register" element={<Register />} />
         <Route path="/admin" element={<AdminProtected><AdminHome /></AdminProtected>} />
         <Route path="/adminDashboard" element={<AdminProtected><AdminDashboard /></AdminProtected>} />

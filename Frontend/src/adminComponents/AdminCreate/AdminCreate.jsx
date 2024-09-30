@@ -54,57 +54,68 @@ const CreateUser = () => {
     <div className="create-user-form">
       <h2>Create a New User</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="Enter name"
-        />
+  <label htmlFor="name">Name:</label>
+  <input
+    type="text"
+    name="name"
+    id="name"
+    value={formData.name}
+    onChange={handleChange}
+    placeholder="Enter name"
+    onKeyDown={(e) => {
+      if (e.key === ' ') {
+        e.preventDefault();  // Prevent space from being added
+      }
+    }}
+    onPaste={(e) => {
+      e.preventDefault();  // Prevent pasting
+    }}
+  />
 
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="Enter email"
-        />
+  <label htmlFor="email">Email:</label>
+  <input
+    type="email"
+    name="email"
+    id="email"
+    value={formData.email}
+    onChange={handleChange}
+    placeholder="Enter email"
+  />
 
-        <label htmlFor="phone">Phone:</label>
-        <input
-          type="number"
-          name="phone"
-          id="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          placeholder="Enter phone number"
-        />
+  <label htmlFor="phone">Phone:</label>
+  <input
+    type="text"
+    name="phone"
+    id="phone"
+    value={formData.phone}
+    onChange={handleChange}
+    placeholder="Enter phone number"
+    maxLength="10"
+  />
 
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          value={formData.password}
-          onChange={handleChange}
-          placeholder="Enter password"
-        />
+  <label htmlFor="password">Password:</label>
+  <input
+    type="password"
+    name="password"
+    id="password"
+    value={formData.password}
+    onChange={handleChange}
+    placeholder="Enter password"
+  />
 
-        <label htmlFor="profilePic">Profile Pictures:</label>
-        <input
-          type="file"
-          name="profilePic"
-          id="profilePic"
-          multiple
-          onChange={handleFileChange}
-        />
+  <label htmlFor="profilePic">Profile Picture:</label>
+  <input
+    type="file"
+    name="profilePic"
+    id="profilePic"
+    multiple
+    onChange={handleFileChange}
+  />
 
-        <button type="submit">Create User</button>
-      </form>
+  <button type="submit">Create User</button>
+</form>
+
+
     </div>
   );
 };

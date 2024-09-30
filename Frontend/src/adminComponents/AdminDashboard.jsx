@@ -101,46 +101,56 @@ const AdminDashboard = () => {
               <th className="py-2 px-4">Actions</th>
             </tr>
           </thead>
-          <tbody>
-            {filteredUsers.length > 0 ? (
-              filteredUsers.map((user) => (
-                <tr key={user._id} className="border-b">
-                  <td className="py-2 px-4">
-                    <img
-                      src={`/uploads/${user.profilePic}`}
-                      alt={user.name || "Default User"}
-                      className="profile-picture"
-                      onError={(e) => (e.target.src = "adi.png")}
-                    />
-                  </td>
-                  <td className="py-2 px-4">{user.name}</td>
-                  <td className="py-2 px-4">{user.email}</td>
-                  <td className="py-2 px-4">{user.phone}</td>
-                  <td className="py-2 px-4">
-                    <button
-                      className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
-                      onClick={() => handleEdit(user._id)}
-                    >
-                      Edit
-                    </button>
-                    &nbsp; &nbsp;
-                    <button
-                      className="bg-red-500 text-white px-4 py-2 rounded"
-                      onClick={() => handleDelete(user._id)}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="5" className="py-2 px-4 text-center">
-                  No users found
-                </td>
-              </tr>
-            )}
-          </tbody>
+         <tbody>
+  {filteredUsers.length > 0 ? (
+    filteredUsers.map((user) => (
+      <tr key={user._id} className="border-b">
+        <td className="py-2 px-4">
+          <img
+            src={`/uploads/${user.profilePic}`}
+            alt={user.name || "Default User"}
+            className="profile-picture"
+            onError={(e) => {
+              e.target.src = "adi.png";
+              e.target.alt = "Default User";
+            }}
+            aria-label={`Profile picture of ${user.name || "Default User"}`}
+          />
+        </td>
+        <td className="py-2 px-4">{user.name}</td>
+        <td className="py-2 px-4">{user.email}</td>
+        <td className="py-2 px-4">{user.phone}</td>
+        <td className="py-2 px-4">
+          <div className="flex space-x-2">
+            <button
+              className="bg-blue-500 text-white px-4 py-2 rounded"
+              onClick={() => handleEdit(user._id)}
+              aria-label={`Edit ${user.name}'s profile`}
+            >
+              Edit
+            </button>
+            &nbsp;
+            <button
+              className="bg-red-500 text-white px-4 py-2 rounded"
+              onClick={() => handleDelete(user._id)}
+              aria-label={`Delete ${user.name}'s profile`}
+            >
+              
+                Delete
+            </button>
+          </div>
+        </td>
+      </tr>
+    ))
+  ) : (
+    <tr>
+      <td colSpan="5" className="py-2 px-4 text-center">
+        No users found
+      </td>
+    </tr>
+  )}
+</tbody>
+
         </table>
       </div>
       <div className="mt-4">

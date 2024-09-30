@@ -1,31 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux'; // Import useDispatch
-//import { logoutUser } from '../../sclices/userSclice'; // Import logoutUser action
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { logoutAdmin } from '../../sclices/adminSlice';
 import { persistor } from '../../store/store';
 import './Home.css'; 
 
 const AdminHome = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch(); // Initialize useDispatch
-
-  // Get user data from Redux store
-  const { admin} = useSelector((state) => state.admin);
-
+  const dispatch = useDispatch(); 
+  const { admin } = useSelector((state) => state.admin);
   const [userName, setUserName] = useState('');
   const [profileImage, setProfileImage] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
 
-
+  // Prevent going back to the login page
+  useEffect(() => {
+    if (window.history && window.history.state && window.history.state.idx !== 0) {
+      window.history.replaceState({}, '');
+    }
+  }, []);
 
   useEffect(() => {
     if (admin) {
-      console.log(admin,"admin details");
-      
       setUserName(admin.name);
       setProfileImage(admin.profilePic || '');
-      setIsAdmin(admin.isAdmin); 
+      setIsAdmin(admin.isAdmin);
     }
   }, [admin]);
 
@@ -39,9 +38,8 @@ const AdminHome = () => {
 
   const logout = () => {
     dispatch(logoutAdmin()); 
-    persistor.purge(); // Clear the persisted state
-
-    navigate('/Login');
+    persistor.purge(); 
+    navigate('/Login', );  
   };
 
   return (

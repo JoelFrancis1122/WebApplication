@@ -10,7 +10,6 @@ const userSlice = createSlice({
   },
   reducers: {
     logUser: (state, action) => {
-      console.log(action,"in asdreducer")
       state.user = action.payload.user;
       state.token = action.payload.token;
     },
